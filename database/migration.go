@@ -9,9 +9,7 @@ import (
 )
 
 func Migration() {
-	// connStr := "user=postgres dbname=postgres-golang sslmode=disable"
-	config, _ := loadConfig()
-	dsn := config.DSN()
+	dsn := GlobalConfig.DSN()
 
 	db, err := sql.Open("postgres", dsn)
 	if err != nil {
