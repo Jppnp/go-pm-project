@@ -1,15 +1,11 @@
 package routes
 
 import (
-	"net/http"
 	"project_manage/controllers"
+
+	"github.com/gin-gonic/gin"
 )
 
-func InitializeRoutes(mux *http.ServeMux) {
-	mux.HandleFunc("/healthcheck", func(w http.ResponseWriter, r *http.Request) {
-		switch r.Method {
-		case "GET":
-			controllers.GetHealthcheck(w, r)
-		}
-	})
+func GinRoutes(router *gin.Engine) {
+	router.GET("/healthcheck", controllers.GetHealthcheck)
 }

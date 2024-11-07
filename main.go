@@ -2,9 +2,10 @@ package main
 
 import (
 	"log"
-	"net/http"
 	"project_manage/database"
 	"project_manage/routes"
+
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
@@ -12,9 +13,9 @@ func main() {
 	database.Migration()
 	database.ConnectDatbase()
 
-	router := http.NewServeMux()
-	routes.InitializeRoutes(router)
+	r := gin.Default()
+	routes.GinRoutes(r)
 
 	log.Println("Starting server on :8080...")
-	log.Fatal(http.ListenAndServe(":8080", router))
+	r.Run()
 }
